@@ -88,7 +88,21 @@ public class Segmenter implements UtteranceProcessor {
 	    Item segItem = null;   // item denoting phonelist (segments)
 	    Item sssyl = null;     // item denoting syl in word
 
-	    String[] phones = lex.getPhones(word.toString(), null);
+	    String[] phones = null;
+
+	    Item token = word.getItemAs("Token");
+	    FeatureSet featureSet = null;
+
+	    if (token != null) {
+		Item parent = token.getParent();
+		featureSet = parent.getFeatures();
+	    }
+	    
+	    if (featureSet != null && featureSet.isPresent("phones")) {
+		phones = (String[]) featureSet.getObject("phones");
+	    } else {
+		phones = lex.getPhones(word.toString(), null);
+	    }
 
 	    assert phones != null;
 

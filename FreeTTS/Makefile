@@ -25,7 +25,7 @@ TESTSDIRS = wave data bin tests
 #	lib/cmuawb.jar lib/jsapi.jar 
 
 JARS = lib/freetts.jar lib/cmulex.jar lib/cmukal8.jar lib/cmukal16.jar \
-	lib/cmuawb.jar
+	lib/cmuawb.jar lib/cmutimelex.jar
 
 ZIPS = javadoc.zip src.zip tests.zip
 
@@ -35,7 +35,11 @@ API_DIR = docs/api
 
 CMULEX_FILES =  com/sun/speech/freetts/en/us/cmulex_compiled.bin \
 		com/sun/speech/freetts/en/us/cmulex_addenda.bin  \
-		com/sun/speech/freetts/en/us/cmu6_lts.bin 
+		com/sun/speech/freetts/en/us/cmulex_lts.bin  
+
+CMUTIME_FILES= com/sun/speech/freetts/en/us/cmutimelex_compiled.bin \
+		com/sun/speech/freetts/en/us/cmutimelex_addenda.bin  \
+		com/sun/speech/freetts/en/us/cmutimelex_lts.bin  \
    
 CMUKAL8_FILES = com/sun/speech/freetts/en/us/cmu_kal/diphone_units.bin \
 		com/sun/speech/freetts/en/us/cmu_kal/diphone_units.idx 
@@ -59,6 +63,9 @@ DEPLOY_FILES =  \
 	    acknowledgments.txt \
 	    Makefile
 
+DEPLOY_TARGET = freetts.tar.gz
+STAGING_AREA = ./FreeTTS
+
 # These files are removed from the binary distribution
 DEPLOY_EXCLUDED_FILES = \
 	$(STAGING_AREA)/docs/*copyright.txt	
@@ -67,13 +74,16 @@ DEPLOY_EXCLUDED_DIRECTORIES = \
 	$(STAGING_AREA)/demo/NuanceClock	\
 	$(STAGING_AREA)/lib/jsapi.jar
 
-DEPLOY_TARGET = freetts.tar.gz
-DEPLOY_DOCS_TARGET = freettsdocs.tar
-STAGING_AREA = ./freetts
-DOC_STAGING_AREA = ./htdocs
 
+DEPLOY_DOCS_TARGET = freettsdocs.tar
+DOC_STAGING_AREA = ./htdocs
 DEPLOY_DOCS = demo docs license.terms acknowledgments.txt index.html
 DEPLOY_DOCS_EXCLUDED_FILES = $(DOC_STAGING_AREA)/XXX
+
+XP_DEPLOY_DOCS_TARGET = xpfreettsdocs.tar
+XP_DOC_STAGING_AREA = ./xpdocs
+
+
 
 ##########################################################################
 
@@ -115,6 +125,17 @@ deploy_docs:
 	tar cvf $(DEPLOY_DOCS_TARGET) $(DOC_STAGING_AREA)
 	gzip $(DEPLOY_DOCS_TARGET)
 
+deploy_xp_docs:
+	rm -f $(XP_DEPLOY_DOCS_TARGET) $(XP_DEPLOY_DOCS_TARGET).gz
+	rm -rf $(XP_DOC_STAGING_AREA)
+	mkdir $(XP_DOC_STAGING_AREA)
+	cp -r docs/audio $(XP_DOC_STAGING_AREA)/audio
+	cp license.terms acknowledgments.txt $(XP_DOC_STAGING_AREA)
+	cp docs/FreeTTSStuff.html $(XP_DOC_STAGING_AREA)
+	find $(XP_DOC_STAGING_AREA) -name CVS -exec rm -rf {} \;
+	tar cvf $(XP_DEPLOY_DOCS_TARGET) $(XP_DOC_STAGING_AREA)
+	gzip $(XP_DEPLOY_DOCS_TARGET)
+
 all::
 	$(MAKE) jars
 
@@ -124,7 +145,7 @@ zips:  $(ZIPS)
 
 src.zip: 
 	$(RM) -f $(CMUAWB_FILES) $(CMUKAL16_FILES) \
-		$(CMUKAL8_FILES) $(CMULEX_FILES)
+		$(CMUKAL8_FILES) $(CMULEX_FILES) $(CMUTIME_FILES)
 	find $(SRCDIRS) -name CVS -prune  -o -print | zip $@ -@ 
 
 tests.zip: 
@@ -135,6 +156,9 @@ javadocs:
 
 lib/cmulex.jar: 
 	$(JAR) cf $@ -C classes $(CMULEX_FILES)
+
+lib/cmutimelex.jar: 
+	$(JAR) cf $@ -C classes $(CMUTIME_FILES)
 
 lib/cmukal8.jar: 
 	$(JAR) cf $@ -C classes $(CMUKAL8_FILES)

@@ -94,7 +94,9 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
     private float rate = 150;		// speaking rate in words per minute
     private float pitch = 100;		// pitch baseline (hertz)
     private float range = 10;		// pitch range (hertz)
+    private float pitchShift = 1;	// F0 Shift
     private float volume = 0.8f;	// the volume (range 0 to 1)
+    private float durationStretch = 1f;	// the duration stretch
 
     private boolean loaded = false;
 
@@ -923,6 +925,42 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
      */
     public float getPitchRange() {
 	return range;
+    }
+
+    /**
+     * Sets the pitch shift
+     *
+     * @param shift the pitch shift (1.0 is no shift)
+     */
+    public void setPitchShift(float shift) {
+	this.pitchShift = shift;
+    }
+
+    /**
+     * Gets the pitch shift.
+     *
+     * @return the pitch shift
+     */
+    public float getPitchShift() {
+	return pitchShift;
+    }
+
+    /**
+     * Sets the duration  stretch
+     *
+     * @param strecth the duration stretch (1.0 is no stretch)
+     */
+    public void setDurationStretch(float stretch) {
+	this.durationStretch = stretch;
+    }
+
+    /**
+     * Gets the duration Stretch
+     *
+     * @return the duration stretch
+     */
+    public float getDurationStretch() {
+	return durationStretch;
     }
 
     /**
