@@ -10,9 +10,6 @@
 # a voice because I've been meaning to tell you how much I care.")
 #
 
-TOP_DIR=../
-CUR_PWD=`pwd`
-
 if [ -f utteranceTest.res ]; then
 	rm utteranceTest.res
 fi
@@ -21,10 +18,27 @@ if [ -f utteranceTest.diff ]; then
 	rm utteranceTest.diff
 fi
 
-cd $TOP_DIR/bin
+rm -f timeTest.wave
+sh ../bin/jtime  -dumpWave timeTest.wave -silent -time 06:51 
 
-rm -f $CUR_PWD/timeTest.wave
-./jtime  -dumpWave $CUR_PWD/timeTest.wave -silent -time 06:51 
+diff -b ../data/flite1.1_float_time.txt timeTest.wave | wc | awk '
+{
+	if ($1 == 0) {
+	    printf("%s differences in timeTest.wave.  Test PASSED\n", $1);
+	} else {
+	    printf("%s differences in timeTest.wave.  Test FAILED\n", $1);
+	}
+}
+'
 
-cd $CUR_PWD
-diff $TOP_DIR/data/freetts_wave.txt timeTest.wave | wc | awk '{print $1 " samples differ in timeTest.wave"}'
+
+
+
+
+
+
+
+
+
+
+

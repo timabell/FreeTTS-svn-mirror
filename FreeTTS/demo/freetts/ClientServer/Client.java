@@ -109,7 +109,16 @@ public class Client {
 	    }
 	    buffer.append(c);
 	}
-	return buffer.toString();
+
+	int lastCharIndex = buffer.length() - 1;
+	
+	// remove trailing ^M for Windows-based machines
+	byte lastByte = (byte) buffer.charAt(lastCharIndex);
+	if (lastByte == 13) {
+	    return buffer.substring(0, lastCharIndex);
+	} else {
+	    return buffer.toString();
+	}
     }
 
 
@@ -121,11 +130,13 @@ public class Client {
      */
     private void sendLine(String line) {
 	if (debug) {
-	    System.out.println("\"" + line + "\"");
+	    System.out.println(line);
 	}
 	line = line.trim();
 	if (line.length() > 0) {
-	    writer.println(line);
+	    writer.print(line);
+	    writer.print('\n');
+	    writer.flush();
 	}
     }
 

@@ -9,10 +9,6 @@
 # coming to you from inside the java virtual machine. I'm happy to have
 # a voice because I've been meaning to tell you how much I care.")
 #
-
-TOP_DIR=..
-PWD=`pwd`
-
 if [ -f wavetest.res ]; then
 	rm wavetest.res
 fi
@@ -21,12 +17,12 @@ if [ -f wavetest.diff ]; then
 	rm wavetest.diff
 fi
 
-FREETTS_CLASSES=$TOP_DIR/classes
-if [ -z "${JDK_DIR}" ] ; then
-    JDK_DIR=/lab/speech/java/j2sdk1.4.0
+FREETTS_CLASSES=../classes
+if [ -z "${JAVA_HOME}" ] ; then
+    JAVA_HOME=/lab/speech/java/j2sdk1.4.0
 fi
 
-${JDK_DIR}/bin/java -Xms64m -ea -cp $FREETTS_CLASSES \
+${JAVA_HOME}/bin/java -Xms64m -ea -cp $FREETTS_CLASSES \
 	-Dcom.sun.speech.freetts.useCommandLine=true \
 	-Dcom.sun.speech.freetts.useStreamAudio=true \
 	-Dcom.sun.speech.freetts.pauseShowUtterance=true \
@@ -35,7 +31,7 @@ ${JDK_DIR}/bin/java -Xms64m -ea -cp $FREETTS_CLASSES \
 	-Dcom.sun.speech.freetts.intTargetStdDev=11 \
 	-Dcom.sun.speech.freetts.durationStretch=1 \
 	-Dcom.sun.speech.freetts.joinType=modified_lpc \
-	com.sun.speech.freetts.FreeTTS -dumpWave $PWD/wavetest.res -file $TOP_DIR/wave/08-01-01.wave.text
+	com.sun.speech.freetts.FreeTTS -dumpWave wavetest.res -file ../wave/08-01-01.wave.text
 
 diff wavetest.res first.wave.txt > wavetest.diff
 

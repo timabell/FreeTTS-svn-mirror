@@ -2,7 +2,7 @@
 <!--
 
 /**
- * Copyright (c) 2001 Sun Microsystems, Inc.
+ * Copyright (c) 2001, 2002  Sun Microsystems, Inc.
  * 
  * See the file "license.terms" for information on usage and
  * redistribution of this file, and for a DISCLAIMER OF ALL 
@@ -14,7 +14,7 @@
 
 <head>
 <meta name="generator" content="HTML Tidy, see www.w3.org">
-<title>FreeTTS - A speech synthesizer written entirely in the Java(TM) programming language</title>
+<title>FreeTTS 1.1 - A speech synthesizer written entirely in the Java(TM) programming language</title>
 </head>
 
 <body bgcolor="white">
@@ -23,7 +23,7 @@
   <table bgcolor="#bbbae2" border="0" width="100%">
       <tr>
 	<td align=center width="100%">
-	<h2><i>FreeTTS</i> - A speech synthesizer written entirely in the Java<sup><font size="-1">TM</font></sup> programming language</h2>
+	<h2><i>FreeTTS 1.1</i> - A speech synthesizer written entirely in the Java<sup><font size="-1">TM</font></sup> programming language</h2>
 	</td>
       </tr>
   </table>
@@ -36,7 +36,7 @@
 
 <td bgcolor="#eeeeff" valign="top" width="20%">
 <center>
-<p><br><b><img src="images/speaker1.gif"> <font color="#ff0000">Listen to <i>FreeTTS!</i></code></b>
+<p><br><b>Listen to <i>FreeTTS!</i></b>
 
 </center>
 
@@ -66,7 +66,15 @@
 <p><b>Cookie Cooks (16k):</b>
 <br><a href="audio/cookiecooks.au">AU</a> format
 <br><a href="audio/cookiecooks.wav">WAV</a> format
+
+<p><b>Tricky Tokenizing (16k):</b><br>
+<i>"For 3/4 or 75% of his time, Dr. Walker practices for $90 a visit on
+Dr. Dr., next to King Philip X of St. Lameer St. in Nashua NH."</i>
+<br><a href="audio/complex.au">AU</a> format
+<br><a href="audio/complex.wav">WAV</a> format
+
 </font>
+
 <hr>
 <center>
 <b><font>FreeTTS Links</font>
@@ -75,7 +83,7 @@
 <!-- <b><font color="#ff0000">FreeTTS Links</font> -->
 <br> <a href="http://sourceforge.net/projects/freetts"> Project Page</a>
 <br> <a href="https://sourceforge.net/forum/?group_id=42080"> Forums</a>
-<br> <a href="http://sourceforge.net/project/showfiles.php?group_id=42080&release_id=65759"> Download</a>
+<br> <a href="http://sourceforge.net/project/showfiles.php?group_id=42080"> Download</a>
 <br> <a href="http://sourceforge.net/cvs/?group_id=42080"> CVS
 Repository</a>
 <br>
@@ -100,7 +108,7 @@ Repository</a>
 
 <td>
 
-<br><b><i>Welcome!</i></b> Thank you for choosing <i>FreeTTS</i>.
+<br><b><i>Welcome!</i></b> Thank you for your interest in <i>FreeTTS</i>.
 
 <h3>General Information</h3>
 
@@ -113,6 +121,13 @@ Repository</a>
 
 <li><a href="#possible_uses">Possible uses of FreeTTS</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+
+<h3>Quick Start</h3>
+
+<ul>
+<li><a href="#quick_start_unix">Quick Start for UNIX</a></li>
+<li><a href="#quick_start_windows">Quick Start for Windows</a></li>
 </ul>
 
 <h3>Installation</h3>
@@ -149,15 +164,17 @@ Repository</a>
 <li><a href="#is_full_jsapi">Does FreeTTS provide full support for the JSAPI 1.0
 specification?</a></li>
 <li><a href="#import_voice_data">How do I import new voice data from Festival or Flite?</a></li>
-<li><a href="#linux_sound">Why do the demos keep crashing when I run on Linux?</a></li>
-<li><a href="#no_jsapi">Why do I get a NoClassDefFoundError when I try to run a demo?</li>
+<li><a href="#linux_sound">Why do the demos keep crashing or hanging  when I run on Linux?</a></li>
+<li><a href="#no_jsapi">Why do I get a NoClassDefFoundError when I try
+to run a demo?</a></li>
+<li><a href="#old_java">Why do I get an UnsupportedClassVersionError  when I try to run a demo?</a></li>
 <li><a href="#where_is_recognizer">Where is the speech recognizer?</a></li>
 </ul>
 
 <br>
 
 </td>
-
+<!--PHP-1-->
 </tr>
 
 </table>
@@ -173,7 +190,7 @@ specification?</a></li>
 <ul>
 
 <li><a name="what_is_freetts"><b>Introduction</b></a></li>
-<p>FreeTTS is a speech synthesis system written entirely in the Java<sup><font size="-1">TM</font></sup> programming language. It is based upon <a href="http://www.cmuflite.org">Flite</a>: a small run-time speech synthesis engine developed at Carnegie Mellon University. Flite is derived from the <a href="http://www.cstr.ed.ac.uk/projects/festival/">Festival</a> Speech Synthesis System from 
+<p>FreeTTS 1.1 is a speech synthesis system written entirely in the Java<sup><font size="-1">TM</font></sup> programming language. It is based upon <a href="http://www.cmuflite.org">Flite 1.1</a>: a small run-time speech synthesis engine developed at Carnegie Mellon University. Flite is derived from the <a href="http://www.cstr.ed.ac.uk/projects/festival/">Festival</a> Speech Synthesis System from 
 the University of Edinburgh and the <a href="http://festvox.org/">FestVox</a> project from Carnegie Mellon University.</p>
 
 <p>This release of FreeTTS includes:</p>
@@ -197,11 +214,23 @@ the University of Edinburgh and the <a href="http://festvox.org/">FestVox</a> pr
 	<li> Paul Lamere, Staff Engineer
 	<li> Philip Kwok, Member of Technical Staff
 </ul>
+
 <p>
 You can contact the
 Sun Microsystems Speech Integration Group through the 
 <a href="https://sourceforge.net/forum/?group_id=42080"> FreeTTS
 Forums</a>.
+<p>
+FreeTTS is based on <a href="http://www.cmuflite.org">CMU's Flite</a>, written by:
+<p>
+<ul>
+          <li>Alan Black
+          <li>Kevin Lenzo
+</ul>
+<p>
+Kevin and Alan generated the data used by FreeTTS.  In addition, Kevin is the voice 
+behind the diphone voices (kevin 8k, kevin 16k), and Alan is the voice behind 
+the speaking clock.
 
 
 
@@ -282,8 +311,8 @@ Forums</a>.
       partial support for the <a
       href="http://java.sun.com/products/java-media/speech/">Java
       Speech API</a> (JSAPI) 1.0 specification.
-      <p><li><i><b>Remote TTS Server.</b></i> FreeTTS can serve as a back-end text-to-speech engine that works with a speech/telephony system. Our <a href="../demo/freetts/ClientServer">client/server demo</a> shows how this can be done.
-      <p><li><i><b>Desktop TTS engine.</b></i> You can use FreeTTS as your workstation/desktop TTS engine. For example, our <a href="../demo/JSAPI/Emacspeak">Emacspeak demo</a> works right out of the box with <a href="http://www.cs.cornell.edu/Info/People/raman/emacspeak/emacspeak.html">Emacspeak</a>.</li>
+      <p><li><i><b>Remote TTS Server.</b></i> FreeTTS can serve as a back-end text-to-speech engine that works with a speech/telephony system. Our <a href="../demo/freetts/ClientServer/README.html">client/server demo</a> shows how this can be done.
+      <p><li><i><b>Desktop TTS engine.</b></i> You can use FreeTTS as your workstation/desktop TTS engine. For example, our <a href="../demo/JSAPI/Emacspeak/README.html">Emacspeak demo</a> works right out of the box with <a href="http://www.cs.cornell.edu/Info/People/raman/emacspeak/emacspeak.html">Emacspeak</a>.</li>
     </ul>
 
 
@@ -293,6 +322,64 @@ Forums</a>.
 
     </ul>
 
+
+<hr>
+
+<h3>Quick Start</h3>
+
+<p>
+<ul>
+<li><a name="quick_start_unix"><b>Quick Start for UNIX</b></a></li>
+
+<p>For Linux and Solaris systems, you need to have GNU Make 3.79 or higher to run the demos.  Visit <a href="http://www.gnu.org/">http://www.gnu.org/</a> to get GNU Make.  Once you have GNU Make, do the following:</p>
+
+<p>
+<ol>
+
+<li>Download and untar the <a href="http://sourceforge.net/project/showfiles.php?group_id=42080">FreeTTS tarball</a>.</li><p>
+
+<li>Copy the <b>speech.properties</b> file from the FreeTTS directory you just created to your home directory.</li><p>
+
+<li>The JSAPI implementation is covered under a separate license.  To get the JSAPI support, 'cd' to the 'lib' directory of the FreeTTS directory, and type 'sh jsapi.sh' to unpack jsapi.jar.</li><p>
+
+<li>Download and install the Java<sup>TM</sup> 2 SDK, Standard Edition, 1.4 Release Candidate (RC) from <a href="http://java.sun.com/j2se/1.4/">http://java.sun.com/j2se/1.4/</a>.  Set your JAVA_HOME environment variable to where you installed the JDK<sup>TM</sup> (e.g., JAVA_HOME=/usr/java/j2sdk1.4.0).</li><p>
+
+<li>In any of the FreeTTS demo directories (e.g., demo/JSAPI/HelloWorld), type 'make run' or 'gmake run' (make sure the 'make' you are using is GNU Make).</li><p>
+
+<li>To build or run the tests, you need to get JUnit 3.7 from <a href="http://junit.org/">http://junit.org/</a>.  JUnit comes in a zip file.  Unzip it in a directory of your choice, and set your JUNIT_HOME environment variable to that directory (e.g., JUNIT_HOME=/usr/java/junit3.7).</li>
+</ol>
+</p>
+
+<li><a name="quick_start_windows"><b>Quick Start for Windows</b></a></li>
+
+<p>For Windows systems, we've provided trivial <code>run.bat</code> files to let you run the demos.  Before you can run the demos, however, you need to do the following:</p>
+
+<p>
+<ol>
+
+<li>Download and untar the <a href="http://sourceforge.net/project/showfiles.php?group_id=42080">FreeTTS tarball</a>.</li><p>
+
+<li>Copy the <b>speech.properties</b> file in the FreeTTS directory to your home directory.  If you don't know where your Windows home directory is, you can come back to this step later:  the demos will tell you where to copy the speech.properties file.</li><p>
+
+<li>The JSAPI implementation is covered under a separate license.  To get the JSAPI support, 'cd' to the 'lib' directory of the FreeTTS directory, and type 'jsapi.exe' to unpack jsapi.jar.</li><p>
+
+<li>Download and install the Java 2 SDK, Standard Edition, 1.4 Release Candidate (RC) from <a href="http://java.sun.com/j2se/1.4/">http://java.sun.com/j2se/1.4/</a>.  Set your JAVA_HOME environment variable to where you installed the JDK (e.g., JAVA_HOME=c:\j2sdk1.4.0-rc).</li><p>
+
+<li>In a DOS prompt window, go to any of the demo directories (e.g., demo\JSAPI\HelloWorld) and type 'run.bat'. You might run into one or two problems:
+<p>
+<ul>
+<li>An UnsupportedClassVersionError message.  This is because the run.bat script has found <code>java</code> and <code>javac</code> executables that are not from Java 2 SDK, Standard Edition, 1.4 RC (or Beta 3).  Make sure your JAVA_HOME environment variable points to the directory where you installed the Java 2 SDK, Standard Edition, 1.4 RC.</li>
+<p>
+<li>A message from the demo telling you to copy the <b>speech.properties</b> file to your home directory or the JDK<sup>TM</sup> lib directory.  You should copy the file to either directory.</li><p>
+</ul>
+</li>
+
+<li>To build or run the tests, you need to get JUnit 3.7 from <a href="http://junit.org">http://junit.org</a>.  JUnit comes in a zip file.  Unzip it in a directory of your choice, and set your JUNIT_HOME environment variable to that directory (e.g., JUNIT_HOME=c:\junit3.7).
+<p>You also need to install Cygwin (<a href="http://www.cygwin.com">http://www.cygwin.com</a>).  As part of the Cygwin install, make sure you select the "make" package from the "Devel" category, the "findutils" package from the "Base" category, and the "zip" package from the "Archive" category.  In addition, make sure you modify your PATH environment variable to include the cygwin/bin directory before any Windows directories.  If you don't do this, the FreeTTS Makefiles will use the Windows "FIND" command first and will fail.</li>
+
+</ol>
+
+</ul>
 
 
 <hr>
@@ -310,17 +397,51 @@ Forums</a>.
 
 <p> <li> <b> FreeTTS Source Tree </b> available as a 
 <a
-href="http://sourceforge.net/project/showfiles.php?group_id=42080&release_id=65759">
-compressed tarball </a> or directly from the FreeTTS 
-<a href="http://sourceforge.net/cvs/?group_id=42080"> CVS
-Repository</a>. The compressed tarball includes ready to run pre-built JAR files
-for FreeTTS. </li>
-<p> <li><b>Java<sup><font size="-1">TM</font></sup> 2 SDK, Standard Edition, v1.4 Beta 3 </b>, available at <a href="http://java.sun.com">http://java.sun.com</a> - FreeTTS requires the Java 2 SDK, Standard Edition, v 1.4 Beta 3 platform, which was the latest JDK<sup><font size="-1">TM</font></sup> at the time of release of this version of FreeTTS. FreeTTS has been tested on the Solaris<sup><font size="-1">TM</font></sup> Operating Environment, Linux and Win32 operating systems.</p>
+href="http://sourceforge.net/project/showfiles.php?group_id=42080&release_id=65759">compressed tarball</a> or directly from the FreeTTS <a href="http://sourceforge.net/cvs/?group_id=42080"> CVS Repository</a>. The compressed tarball includes ready-to-run prebuilt JAR files for FreeTTS. </li>
+<p> <li><b>Java<sup><font size="-1">TM</font></sup> 2 SDK, Standard Edition, v1.4 Release Candidate (RC)</b>, available at <a href="http://java.sun.com/j2se/1.4/">http://java.sun.com/j2se/1.4/</a> (all platforms).</p>
 
-<li> <b> JSAPI 1.0 specification implementation </b> - available at 
-<b> research.sun.com</b> - FreeTTS requires an
-implementation of the JSAPI 1.0 specification.  Follow these steps to get an
-implementation of the JSAPI 1.0 specification:
+<p>FreeTTS requires the Java 2 SDK, Standard Edition, v 1.4 RC platform, which was the latest JDK at the time of release of this version of FreeTTS. FreeTTS also works with Java 2 SDK, Standard Edition, v 1.4 Beta 3, but we recommend the Release Candidate. FreeTTS has been tested on the Solaris<sup><font size="-1">TM</font></sup> Operating Environment, Linux and Win32 operating systems.</p>
+
+<p>After you have downloaded and installed it, remember to set your
+<code><b>JAVA_HOME</b></code> environment variable to point to
+where you installed it.  You can also edit the
+<code>build/Config.dos</code> and/or
+<code>build/Config.unix</code> files to set the JAVA_HOME variable. </p>
+
+<li> <b> JSAPI 1.0 specification implementation </b>
+
+<p>FreeTTS requires an implementation of the JSAPI 1.0 specification.  
+The JSAPI 1.0 specification implementation (i.e., the javax.speech.*
+classes) is not available under a BSD-style license.  Instead, we are
+making the binaries available under a separate binary code
+license.</p>
+
+<b>UNIX Systems </b> - This distribution includes a 
+self-extracting shell archive containing the <code>jsapi.jar</code> file.  
+If you are running under Linux or the Solaris<sup><font size="-1">TM</font></sup> Operating Environment, (or any other system that supports <code>sh</code>) follow these instructions:
+<p>
+<ol>
+    <li> Go to the FreeTTS/lib directory.
+    <li> Type  <code>sh ./jsapi.sh</code>
+    <li> If the binary license agreement is acceptable, accept it by typing "y". The <code>jsapi.jar</code> file will be unpacked and deposited into the lib directory.
+</ol>
+<br> <b>Win32</b> - This distribution includes an installer program containing the <code>jsapi.jar</code> file.  If you are running on a Win32 operating system follow these instructions:
+<p>
+<ol>
+    <li> Go to the FreeTTS/lib directory
+    <li> Type <code> .\jsapi.exe </code>
+    <li> If the binary license agreement is acceptable, accept it by
+    clicking "I Agree". The <code>jsapi.jar</code> file will be 
+    unpacked and deposited into the <code>lib</code> directory.
+</ol>
+
+<!-- Since jdk1.4beta3 only works on windows, linux and solaris, there
+ are currently no 'other' systems -->
+
+<!--
+<br><b> Other Systems</b> - If 
+self-extracting shell archives (Win32,
+Mac) Follow these steps to get an implementation of the JSAPI 1.0 specification:
 <ol>
  	<li> Go to <a href="http://research.sun.com/speech/software">
 http://research.sun.com/speech/software</a> 
@@ -334,7 +455,7 @@ http://research.sun.com/speech/software</a>
 	<code> jsutils10.tar.Z or jsutils10.zip</code>) </li>
 	<li> Uncompress/untar the downloaded file </li>
 	<li> Copy the file <code> jsutils/lib/jsapi.jar
-	</code> to <code> freetts/lib/jsapi.jar</code> </li>
+	</code> to <code> FreeTTS/lib/jsapi.jar</code> </li>
 </ol>
 <p>Note that although this JSUtils package contains a large number of
 files, the only thing that FreeTTS actually uses from JSUtils is 
@@ -354,30 +475,38 @@ For the zip file:
     % unzip jsutils10.zip  jsutils-1.0/jsapi/lib/jsapi.jar
 </pre>
 
-Once you have extracted jsapi.jar copy it to the freetts lib
+Once you have extracted jsapi.jar copy it to the <code>FreeTTS/lib</code>
 directory:
 
 <pre>
-    cp jsutils-1.0/jsapi/lib/jsapi.jar freetts/lib/jsapi.jar
+    cp jsutils-1.0/jsapi/lib/jsapi.jar FreeTTS/lib/jsapi.jar
 </pre>
+-->
 
 
 
 </li>
 
-<p><li><b>GNU Make version 3.79</b> or higher, available at <a href="http://www.gnu.org">http://www.gnu.org</a> - The demos can be easily run from makefiles. These makefiles require a recent version of GNU Make. We have tested with GNU Make version 3.79.
+<p><li><b>GNU Make version 3.79</b> or higher.
 
-<p><li><b>JUnit Version 3.7</b> <i>(Testing only)</i>, available at <a href="http://www.junit.org">http://www.junit.org</a> - JUnit is only needed if you intend to run the unit tests included with FreeTTS.</li>
+<p>The demos can be easily run from makefiles. These makefiles require a recent version of GNU Make. We have tested with GNU Make version 3.79.
+
+<p><b>UNIX Systems</b> - available at <a href="http://www.gnu.org">http://www.gnu.org</a>.
+
+<p><b>Win32</b> - available at <a href="http://www.cygwin.com">http://www.cygwin.com</a>.  At this webpage, click on the "Install Cygwin Now" links.  As part of the Cygwin install, make sure you select the "make" package from the "Devel" category, the "findutils" package from the "Base" category, and the "zip" package from the "Archive" category.  In addition, make sure you modify your PATH environment variable to include the cygwin/bin directory before any Windows directories.  If you don't do this, the FreeTTS Makefiles will use the Windows "FIND" command first and will fail.
+
+<p><li><b>JUnit Version 3.7</b>  <i>(Testing only)</i>, available at <a href="http://www.junit.org">http://www.junit.org</a> (all platforms).
+<p>JUnit is only needed if you intend to run the unit tests included with FreeTTS. Download the Junit3.7.zip file, unzip it, and set your JUNIT_HOME environment variable to point to where you installed JUnit 3.7.</li>
 
 <p><li><b> UNIX Scripting tools </b> <i>(Testing only)</i> - The
-regression tests use a number of UNIX tools including: <code>sed, awk, diff,</code> and <code>wc</code>.
+regression tests use a number of UNIX tools including: <code>sed, awk,
+diff,</code> and <code>wc</code>.  For Windows users, these
+tools are available with the Cygwin package described in the
+section for getting GNU make.
 
 <p><li><b>Install speech.properties</b> - Copy the
 <b>speech.properties</b> file from the top level directory to your
 home directory. This step is required for JSAPI demos and applications.
-
-<p><li> <b> Set JDK_DIR </b> - Set the <code><b>JDK_DIR</b></code> environment 
-variable to point to your JDK directory (e.g.  /usr/java/j2sdk1.4.0beta3).
 </li>
 
 </ul>
@@ -401,14 +530,30 @@ variable to point to your JDK directory (e.g.  /usr/java/j2sdk1.4.0beta3).
 <li>Build the FreeTTS engine and the demos with command:
 
 <pre>
-    % gmake all
+    % make all
 </pre>
 
+<p><b>Important:</b> Make sure you are using GNU make.  You can check to see if you are using GNU make by typing the command '<code>make -version</code>'.  If you do not get results similar to the following, then you most likely do not have GNU make:
+
+<pre>
+  GNU Make version 3.79, by Richard Stallman and Roland McGrath.
+  Built for sparc-sun-solaris2.6
+  Copyright (C) 1988, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99 Free Software Foundation, Inc.
+  This is free software; see the source for copying conditions.
+  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+  PARTICULAR PURPOSE.
+
+  Report bugs to &lt;bug-make@gnu.org&gt;.
+</pre>
+
+<p><b>Note:</b> On many systems, the GNU make command is also called gmake.
+If this is the case on your system, then use gmake instead of make.
+<p>
 
 <li>The output class files are placed in the 'classes' directory.</li>
-</ul>
+</ol>
 <p>
-<i>Note that you make receive complaints about missing directories if
+<i>Note that you may receive complaints about missing directories if
 you build the sources without unpacking  the 'tests.zip' 
 file as well (See below).  The complaints are harmless.</i>
 </li>
@@ -424,7 +569,10 @@ file as well (See below).  The complaints are harmless.</i>
 <blockquote>
 <b>NOTE</b>
 The regression tests also make use of a standard set of UNIX utilities such as
-<code>sed</code>, <code>awk</code>, <code>diff</code> and <code>wc</code>. They are typically not available on a vanilla Win32 system. Therefore, the regression tests are not usually run on a Win32 system.
+<code>sed</code>, <code>awk</code>, <code>diff</code> and
+<code>wc</code>. They are typically not available on a vanilla
+Win32 system. To get these tools, we recommend using the
+Cygwin environment described in the section for getting GNU make.
 </blockquote>
 
 <p>To verify that your FreeTTS source was built properly, follow these steps:</p>
@@ -439,7 +587,7 @@ The regression tests also make use of a standard set of UNIX utilities such as
 <li>Unpack the tests with the command: 
 
 <pre>
-    % jar xf tests.zip
+     % jar xf tests.zip
 </pre>
 </li>
 
@@ -449,66 +597,18 @@ The regression tests also make use of a standard set of UNIX utilities such as
 
 <pre>
      % cd tests
-     % gmake alltests
+     % make alltests
 </pre>
+</li>
 
-<li>The test output should look like this:</li>
-
+<li>To run just the unit tests, use the following commands: </li>
+<p>
 <pre>
-................
-Time: 27.852
-
-OK (16 tests)
-
-
-
-./utteranceTest.sh
-              Unit 0 differences of 3538. Test Passed.
-        target_end 0 differences of 3538. Test Passed.
-                 f0  differences of 1462. Test Passed.
-             accent 0 differences of 374. Test Passed.
-            stress 0 differences of 1362. Test Passed.
-           Segment 0 differences of 1790. Test Passed.
-       SylStructure 0 differences of 522. Test Passed.
-               Word 0 differences of 522. Test Passed.
-             Phrase 0 differences of 146. Test Passed.
-              Token 0 differences of 515. Test Passed.
-               pos 0 differences of 1462. Test Passed.
-            endtone 0 differences of 276. Test Passed.
-./utteranceTimeTest.sh
-                Unit 0 differences of 41. Test Passed.
-          target_end 0 differences of 41. Test Passed.
-                   f0  differences of 35. Test Passed.
-               accent 0 differences of 8. Test Passed.
-              stress 0 differences of 30. Test Passed.
-             Segment 0 differences of 41. Test Passed.
-        SylStructure 0 differences of 12. Test Passed.
-                Word 0 differences of 12. Test Passed.
-               Phrase 0 differences of 5. Test Passed.
-               Token 0 differences of 12. Test Passed.
-                 pos 0 differences of 35. Test Passed.
-             endtone 0 differences of 10. Test Passed.
-            file_pos 0 differences of 12. Test Passed.
-
-0 lines in lpctest.diff file. See lpctest.res for the LPC residual file.
-0 samples differ in timeTest.wave
-0 lines in wavetest.diff file. See wavetest.res for the wave file.
+     % cd tests
+     % make tests
 </pre>
-    <li> To run just the unit tests, use the following commands: </li>
-    <p>
-     <pre>
-         % cd tests
-	 % gmake tests
-     </pre>
-    <p>
-    <li> The output should look like this: </li>
-    <p>
-    <pre>
-    ................
-    Time: 27.852
-    OK (16 tests)
-    </pre>
-    <p>
+<p>
+<li>The test output should be self explanatory.</li>
 </li>
 </ul>
 </ul>
@@ -551,9 +651,9 @@ href="../demo/JSAPI/Emacspeak/README.html"><b>JSAPI/Emacspeak</b></a>
 <li><a href="../demo/freetts/ClientServer/README.html"><b>freetts/ClientServer</b></a> - a low-level (non-JSAPI) socket-based TTS server with sample clients written in the C programming language and the Java programming language.</li>
 </ul>
 
-<p>Typically, unless it is a client/server demo, just typing "gmake run" should run the demo
+<p>Typically, unless it is a client/server demo, just typing 'make run' or 'gmake run' should run the demo.
 
-<p><b>Important</b> <i>Be sure to copy the
+<p><b>Important:</b> <i>Be sure to copy the
 '<code>speech.properties</code>' file to your home directory before
 running the demos that use JSAPI 1.0. If you are not sure where to copy this file, try running one of the JSAPI demos. If the demo cannot find the 'speech.properties' file, it will tell you where you should put it.</i></p>
 
@@ -573,7 +673,8 @@ running the demos that use JSAPI 1.0. If you are not sure where to copy this fil
 <p><li><a name="freetts_api"><b>API documentation</b></a></li>
 <p>
 The  <a href="./api/index.html">FreeTTS API Documentation</a> contains the
-engine documentation. Note that if this link is broken, you probably have not unpacked the javadoc.zip file. Unpack with "<code>jar xf javadoc.zip</code>".
+engine documentation. Note that if this link is broken, you probably
+have not unpacked the javadoc.zip file. Unpack it with "<code>jar xf javadoc.zip</code>".
 
 <p><li><a name="writing_software"><b>Writing software with FreeTTS</b></a></li>
 <p>
@@ -621,19 +722,53 @@ FreeTTS synthesizer and make it speak.
 <ul>
 <li>single 296MHz CPU SPARC v9 processor
 <li>Solaris<sup><font size="-1">TM</font></sup> 8 in 64-bit mode
-<li>Java 2 SDK, Standard Edition, v 1.4 Beta 3
+<li>Java 2 SDK, Standard Edition, v 1.4 Release Candidate
 </ul>
 
-<p>We rendered Chapter One of <i>Alice's Adventures in Wonderland</i> by Lewis Carroll using both Flite and FreeTTS. The results are summarized below:
+<p>We rendered the first two chapters of <i>Alice's Adventures in Wonderland</i>
+by Lewis Carroll (about 20 minutes of text), 
+and the entire text of Jules Verne's <i>Journey to
+the Center of the Earth</i> (about 10 hours of text) 
+using both Flite and FreeTTS. The results are summarized below:
 
 <p><table border="1" cellspacing="0" cellpadding="1" width="60%">
-<tr><td></td><td bgcolor="#ccccee"><b>Flite</b></td><td  bgcolor="#ccccee"><b>FreeTTS</b></td></tr>
-<tr><td bgcolor="#ccccee">Load Time</td><td>0s</td><td>3.4s</td></tr>
-<tr><td bgcolor="#ccccee">Processing Time</td><td>44s</td><td>24.1s</td></tr>
-<tr><td bgcolor="#ccccee"><b>Total</b></td><td><b>44s</b></td><td><b>27.5s</b></td></tr>
+<tr><td bgcolor="#ccccee"> <b>Single CPU 296MHz SPARC v9</b></td><td bgcolor="#ccccee"><b>Flite</b></td><td  bgcolor="#ccccee"><b>FreeTTS</b></td></tr>
+<tr><td bgcolor="#ddddee">Loading Time for 'Alice' text</td><td> 0.0s</td><td> 4.9s</td></tr>
+<tr><td bgcolor="#ddddee">Processing Time for 'Alice' text</td><td>
+43.7s</td><td> 25.9s</td></tr>
+<tr><td bgcolor="#eeeeff">Loading Time for 'Journey'
+text</td><td> 0.0s</td><td> 5.8s</td></tr>
+<tr><td bgcolor="#eeeeff">Processing Time for 'Journey'
+text</td><td> 1019.2s</td><td> 347.0s</td></tr>
+<tr><td bgcolor="#ddddee">Time to first Sample (10 word sentence)
+</td><td> 195ms</td><td> 41ms</td></tr>
 </table>
 
-<p>With a sentence of average length (using the alice test), the time to first sound, disregarding loading times, is about 0.05 seconds.
+<p>On a 2-CPU system with the following configuration:
+
+<p>
+<ul>
+<li> Dual 360MHz CPU SPARC v9 Processor system
+<li>Solaris<sup><font size="-1">TM</font></sup> 8 in 64-bit mode
+<li>Java 2 SDK, Standard Edition, v 1.4 Release Candidate
+</ul>
+
+<p>The results are summarized below:
+
+<p><table border="1" cellspacing="0" cellpadding="1" width="60%">
+<tr><td bgcolor="#ccccee"> <b>Dual CPU 360MHz SPARC v9</b></td><td bgcolor="#ccccee"><b>Flite</b></td><td  bgcolor="#ccccee"><b>FreeTTS</b></td></tr>
+<tr><td bgcolor="#ddddee">Loading Time for 'Alice' text</td><td>
+0.0s</td><td> 2.9s</td></tr>
+<tr><td bgcolor="#ddddee">Processing Time for 'Alice' text</td><td>
+35.7s</td><td> 15.8s</td></tr>
+<tr><td bgcolor="#eeeeff">Loading Time for 'Journey'
+text</td><td> 0.0s</td><td> 3.8s</td></tr>
+<tr><td bgcolor="#eeeeff">Processing Time for 'Journey'
+text</td><td> 842.7s</td><td> 208.3s</td></tr>
+<tr><td bgcolor="#ddddee">Time to first Sample (10 word sentence)
+</td><td> 165ms</td><td> 31ms</td></tr>
+</table>
+
 
 <p>
 <li><a name="why_sound_bad"><b>Why does the diphone synthesizer sound so bad?</b></a></li>
@@ -668,7 +803,12 @@ in the mean time, a few higher quality voices will be released with
 the next version.</i>''
 </blockquote>
 
-
+<p>
+We highly recommend you read the 
+<a href="http://festvox.org/">FestVox</a> documentation for
+creating new voices.  We plan on creating FestVox
+tools that will generate FreeTTS voice data.  We are a small
+team, however, and could use your help.
 
 <p>
 <li><a name="why_alan_lalala"><b>Why does the 'alan' voice say "lalalala"?</b></a></li>
@@ -711,13 +851,11 @@ freetts/com/sun/speech/freetts/audio/MultiFileAudioPlayer.java
 
 
 <p>
-<li><a name="is_full_jsapi"><b>Does FreeTTS provide full 
-support the JSAPI 1.0 specification?</b></a></li>
+<li><a name="is_full_jsapi"><b>Does FreeTTS provide full support for the JSAPI 1.0 specification?</b></a></li>
 
 <p>No. Since FreeTTS is a speech synthesis system, none of the JSAPI
 1.0 Recognition interfaces are supported. In addition, FreeTTS
-supports only a subset of the full JSAPI 1.0 specification.   The
-FreeTTS support for JSAPI 1.0 has the following restrictions:</p>
+supports only a subset of the JSAPI 1.0 javax.speech.synthesis specification.   The FreeTTS support for JSAPI 1.0 has the following restrictions:</p>
 
 <ul>
 <li>JSML Speech Markup is ignored. FreeTTS JSAPI will process JSML, but currently does not apply the markup to the generated speech.</li>
@@ -744,31 +882,58 @@ Festival or Flite?</b></a></li><p>
 There are a set of tools that will allow the easy importation of voice
 and lexicon data from Flite to FreeTTS.  These tools are not included
 in this release of FreeTTS. Future releases may include these tools.
-
+We're also planning on working to create tools for 
+<a href="http://festvox.org/">FestVox</a> to allow people to generate
+FreeTTS voice data directly from FestVox.  We are a small team,
+however, and could use your help in this area.
 
 <p>
-<li><a name="linux_sound"> <b>The demos are crashing when I run on
-Linux, how come?</b></a></li>
-
+<li><a name="linux_sound"><b>Why do the demos keep crashing or hanging when I run on Linux?</b></a></li>
 <p>
-Your sound drivers may need updating. Certain Linux configurations
-(particularly, Red Hat Linux with Sound Blaster Live sound cards) do
+We've noticed a number of issues with the sound support on Linux.
+Certain Linux configurations (particularly, Red Hat Linux with Sound 
+Blaster Live sound cards) do
 not work properly with Java<sup><font size="-1">TM</font></sup> Sound unless the drivers are updated.  See
-these Bug Parade reports for more details: 
- 
- <a
- href="http://developer.java.sun.com/developer/bugParade/bugs/4427864.html">4427864</a>
- and
- <a
- href="http://developer.java.sun.com/developer/bugParade/bugs/4498848.html">4498848</a>.
+these Bug Parade reports for more details: <a
+href="http://developer.java.sun.com/developer/bugParade/bugs/4427864.html">4427864</a>
+and <a
+href="http://developer.java.sun.com/developer/bugParade/bugs/4498848.html">4498848</a>.
+Please vote to get these bugs fixed. We've also noticed that systems
+that use ALSA (Advanced Linux Sound Architecture) seem to work better.
+
+<p>
+In the 1.1 release of FreeTTS we have attempted to work around the Linux
+crash problem.  With this work-around, FreeTTS is quite a bit more
+stable on Linux that in the 1.0 release.  We are still seeing
+infrequent hangs during sound output on Linux. This is very likely
+related to the same bug.
+<p>
+We are in communication with the Java Sound folks and they
+are looking at these issues.  Some alternatives are to send <a
+href="#output_to_file"> output to a file </a>
+and use native tools to playback the data, or run the 
+<a href="../demo/freetts/ClientServer/README.html">ClientServer</a>
+server demo and write some native code to retrieve and play the audio
+data.
 
 
 <p>
-<li><a name="no_jsapi"><b>Why do I get a NoClassDefFoundError when I try to run a
-demo?</b></a></li>
+<li><a name="no_jsapi"><b>Why do I get a NoClassDefFoundError when I try to run a demo?</b></a></li>
+<p>
 You probably need to install the JSAPI 1.0 specification implementation. See 
 <a href="#prerequisites">Prerequisites for building and running FreeTTS</a>
 for more details.
+
+<p>
+<li><a name="old_java"><b>Why do I get an UnsupportedClassVersionError when I try to run a demo?</b></a></li>
+<p>
+You probably are trying to run with an older (pre jdk1.4 beta3)
+version of the java runtime. To verify this type:
+<pre>
+% java -version
+</pre>
+
+You should see something like: <code>java version "1.4.0-rc"</code> or <code>java version "1.4.0-beta3"</code>. If you see something older that this, such as <code> java version "1.2.2" </code> then you are indeed running with an older version of the java runtime. See <a href="#prerequisites">Prerequisites for building and running FreeTTS</a> for more details on what is needed to run FreeTTS.
 
 <p>
 <li><a name="where_is_recognizer"><b>Where is the speech recognizer?</b></a></li>
@@ -784,7 +949,7 @@ for developments in this area.
 
 <hr>
 See the <a href="../license.terms">license terms</a> and <a href="../acknowledgments.txt">acknowledgments</a>.<br>
-Copyright 2001 Sun Microsystems, Inc. All Rights Reserved. Use is subject to license terms.</li>
+Copyright 2001, 2002 Sun Microsystems, Inc. All Rights Reserved. Use is subject to license terms.</li>
 </ul>
 </body>
 </html>

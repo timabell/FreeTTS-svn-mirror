@@ -91,10 +91,12 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
     private BulkTimer threadTimer = new BulkTimer();
 
 
-    private float rate = 150;		// speaking rate in words per minute
+    private float nominalRate = 150;	// nominal speaking rate for this voice
     private float pitch = 100;		// pitch baseline (hertz)
     private float range = 10;		// pitch range (hertz)
+    private float pitchShift = 1;	// F0 Shift
     private float volume = 0.8f;	// the volume (range 0 to 1)
+    private float durationStretch = 1f;	// the duration stretch
 
     private boolean loaded = false;
 
@@ -134,7 +136,7 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
 	features = new FeatureSetImpl();
 	featureProcessors = new HashMap();
 
-	rate = Float.parseFloat(
+	nominalRate = Float.parseFloat(
 		System.getProperty(PROP_PREFIX + "speakingRate","150"));
 	pitch = Float.parseFloat(
 		System.getProperty(PROP_PREFIX + "pitch","100"));
@@ -926,13 +928,49 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
     }
 
     /**
+     * Sets the pitch shift
+     *
+     * @param shift the pitch shift (1.0 is no shift)
+     */
+    public void setPitchShift(float shift) {
+	this.pitchShift = shift;
+    }
+
+    /**
+     * Gets the pitch shift.
+     *
+     * @return the pitch shift
+     */
+    public float getPitchShift() {
+	return pitchShift;
+    }
+
+    /**
+     * Sets the duration  stretch
+     *
+     * @param strecth the duration stretch (1.0 is no stretch)
+     */
+    public void setDurationStretch(float stretch) {
+	this.durationStretch = stretch;
+    }
+
+    /**
+     * Gets the duration Stretch
+     *
+     * @return the duration stretch
+     */
+    public float getDurationStretch() {
+	return durationStretch;
+    }
+
+    /**
      * Sets the rate of speech.
      *
      * @param wpm words per minute
      */
     public void setRate(float wpm) {
 	if (wpm > 0 && wpm < 1000) {
-	    rate = wpm;
+	    setDurationStretch(nominalRate / wpm);
 	}
     }
 
@@ -942,7 +980,7 @@ public abstract class Voice implements UtteranceProcessor, Dumpable {
      * @return words per minute
      */
     public float getRate() {
-	return rate;
+	return durationStretch * nominalRate;
     }
 
 

@@ -5,8 +5,17 @@
 # redistribution of this file, and for a DISCLAIMER OF ALL 
 # WARRANTIES.
 #
+# build the php from the main page
 
-Change history for FreeTTS.
---------------------------
-December 14, 2001 	V1.0  		- First public release
-November  7, 2001 	V0.9  		- Internal Test Release
+TOP = ..
+
+include ${TOP}/build/Makefile.config
+
+
+deploy:	index.php
+
+index.php:    index.html
+	$(AWK) -f create_php.awk < $< > $@
+
+clean::
+	rm -f index.php

@@ -31,6 +31,9 @@ import com.sun.speech.freetts.cart.Phraser;
 import com.sun.speech.freetts.cart.Intonator;
 import com.sun.speech.freetts.cart.Durator;
 
+import com.sun.speech.freetts.en.us.PrefixFSM;
+import com.sun.speech.freetts.en.us.PronounceableFSM;
+import com.sun.speech.freetts.en.us.SuffixFSM;
 import com.sun.speech.freetts.en.us.TokenToWords;
 import com.sun.speech.freetts.en.PartOfSpeechTagger;
 import com.sun.speech.freetts.en.PauseGenerator;
@@ -126,8 +129,12 @@ public abstract class CMUVoice extends Voice {
 	BulkTimer.LOAD.start("UtteranceProcessors");
         PhoneDurations phoneDurations = new PhoneDurationsImpl(
             this.getClass().getResource("dur_stat.txt"));
+	PronounceableFSM prefixFSM = new PrefixFSM
+	    (this.getClass().getResource("prefix_fsm.txt"));
+	PronounceableFSM suffixFSM = new SuffixFSM
+	    (this.getClass().getResource("suffix_fsm.txt"));
         
-	processors.add(new TokenToWords(numbersCart));
+	processors.add(new TokenToWords(numbersCart, prefixFSM, suffixFSM));
 	processors.add(new PartOfSpeechTagger());
 	processors.add(new Phraser(phrasingCart));
 	processors.add(new Segmenter());
@@ -215,6 +222,8 @@ public abstract class CMUVoice extends Voice {
         phoneSet  = new PhoneSetImpl( 
             this.getClass().getResource("phoneset.txt"));
 
+	addFeatureProcessor("word_break", new FeatureProcessors.WordBreak());
+	addFeatureProcessor("word_punc", new FeatureProcessors.WordPunc());
 	addFeatureProcessor("gpos", new FeatureProcessors.Gpos(pos));
 	addFeatureProcessor("word_numsyls",new FeatureProcessors.WordNumSyls());
 	addFeatureProcessor("ssyl_in", new FeatureProcessors.StressedSylIn());
@@ -228,6 +237,8 @@ public abstract class CMUVoice extends Voice {
 	addFeatureProcessor("month_range", new FeatureProcessors.MonthRange());
 	addFeatureProcessor("token_pos_guess", 
 		new FeatureProcessors.TokenPosGuess());
+	addFeatureProcessor("segment_duration", 
+		new FeatureProcessors.SegmentDuration());
 	addFeatureProcessor("sub_phrases", new FeatureProcessors.SubPhrases());
 	addFeatureProcessor("asyl_in", new FeatureProcessors.AccentedSylIn());
 	addFeatureProcessor("last_accent", new FeatureProcessors.LastAccent());
@@ -246,8 +257,24 @@ public abstract class CMUVoice extends Voice {
 
 	addFeatureProcessor("seg_coda_fric", new
 		FeatureProcessors.SegCodaFric());
+	addFeatureProcessor("seg_onset_fric", new
+		FeatureProcessors.SegOnsetFric());
+
+	addFeatureProcessor("seg_coda_stop", new
+		FeatureProcessors.SegCodaStop());
 	addFeatureProcessor("seg_onset_stop", new
 		FeatureProcessors.SegOnsetStop());
+
+	addFeatureProcessor("seg_coda_nasal", new
+		FeatureProcessors.SegCodaNasal());
+	addFeatureProcessor("seg_onset_nasal", new
+		FeatureProcessors.SegOnsetNasal());
+
+	addFeatureProcessor("seg_coda_glide", new
+		FeatureProcessors.SegCodaGlide());
+	addFeatureProcessor("seg_onset_glide", new
+		FeatureProcessors.SegOnsetGlide());
+
 	addFeatureProcessor("seg_onsetcoda", new
 		FeatureProcessors.SegOnsetCoda());
 	addFeatureProcessor("syl_codasize", new
