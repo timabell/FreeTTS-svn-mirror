@@ -36,7 +36,7 @@
 
 <td bgcolor="#eeeeff" valign="top" width="20%">
 <center>
-<p><br><b><img src="images/speaker1.gif"> <font color="#ff0000">Listen to <i>FreeTTS!</i></code></b>
+<p><br><b>Listen to <i>FreeTTS!</i></b>
 
 </center>
 
@@ -75,7 +75,7 @@
 <!-- <b><font color="#ff0000">FreeTTS Links</font> -->
 <br> <a href="http://sourceforge.net/projects/freetts"> Project Page</a>
 <br> <a href="https://sourceforge.net/forum/?group_id=42080"> Forums</a>
-<br> <a href="http://sourceforge.net/project/showfiles.php?group_id=42080&release_id=65759"> Download</a>
+<br> <a href="http://sourceforge.net/project/showfiles.php?group_id=42080"> Download</a>
 <br> <a href="http://sourceforge.net/cvs/?group_id=42080"> CVS
 Repository</a>
 <br>
@@ -197,11 +197,23 @@ the University of Edinburgh and the <a href="http://festvox.org/">FestVox</a> pr
 	<li> Paul Lamere, Staff Engineer
 	<li> Philip Kwok, Member of Technical Staff
 </ul>
+
 <p>
 You can contact the
 Sun Microsystems Speech Integration Group through the 
 <a href="https://sourceforge.net/forum/?group_id=42080"> FreeTTS
 Forums</a>.
+<p>
+FreeTTS is based on <a href="http://www.cmuflite.org">CMU's Flite</a>, written by:
+<p>
+<ul>
+          <li>Alan Black
+          <li>Kevin Lenzo
+</ul>
+<p>
+Kevin and Alan generated the data used by FreeTTS.  In addition, Kevin is the voice 
+behind the diphone voices (kevin 8k, kevin 16k), and Alan is the voice behind 
+the speaking clock.
 
 
 
@@ -315,12 +327,46 @@ compressed tarball </a> or directly from the FreeTTS
 <a href="http://sourceforge.net/cvs/?group_id=42080"> CVS
 Repository</a>. The compressed tarball includes ready to run pre-built JAR files
 for FreeTTS. </li>
-<p> <li><b>Java<sup><font size="-1">TM</font></sup> 2 SDK, Standard Edition, v1.4 Beta 3 </b>, available at <a href="http://java.sun.com">http://java.sun.com</a> - FreeTTS requires the Java 2 SDK, Standard Edition, v 1.4 Beta 3 platform, which was the latest JDK<sup><font size="-1">TM</font></sup> at the time of release of this version of FreeTTS. FreeTTS has been tested on the Solaris<sup><font size="-1">TM</font></sup> Operating Environment, Linux and Win32 operating systems.</p>
+<p> <li><b>Java<sup><font size="-1">TM</font></sup> 2 SDK, Standard Edition, v1.4 Beta 3 </b>, available at <a href="http://java.sun.com">http://java.sun.com</a> - FreeTTS requires the Java 2 SDK, Standard Edition, v 1.4 Beta 3 platform, which was the latest JDK<sup><font size="-1">TM</font></sup> at the time of release of this version of FreeTTS. FreeTTS has been tested on the 
+Solaris<sup><font size="-1">TM</font></sup> Operating Environment, 
+Linux and Win32 operating systems.</p>
 
-<li> <b> JSAPI 1.0 specification implementation </b> - available at 
-<b> research.sun.com</b> - FreeTTS requires an
-implementation of the JSAPI 1.0 specification.  Follow these steps to get an
-implementation of the JSAPI 1.0 specification:
+<li> <b> JSAPI 1.0 specification implementation </b> - FreeTTS requires an
+implementation of the JSAPI 1.0 specification.  
+The JSAPI 1.0 specification implementation (i.e., the javax.speech.*
+classes) is not available under a BSD-style license.  Instead, we are
+making the binaries available under a separate binary code
+license.</br>
+
+<br> <b>Unix Systems </b> - This distribution includes a 
+self-extracting shell archive containing the <code>jsapi.jar</code> file.  
+If you are running under Linux or the 
+Solaris<sup><font size="-1">TM</font></sup> Operating Environment, (or any
+other system that supports <code>sh</code>) follow these instructions:
+<ol>
+    <li> Go to the FreeTTS/lib directory
+    <li> Type <code>sh ./jsapi.sh</code> 
+    <li> If the binary license agreement is acceptable, accept it by typing "y". The <code>jsapi.jar</code> file will be unpacked and deposited into the lib directory.
+</ol>
+<br> <b>Win32</b> - This distribution includes an
+installer program containing the <code>jsapi.jar</code> file.  
+If you are running
+on a Win32 Operating system follow these instructions:
+<ol>
+    <li> Go to the FreeTTS/lib directory
+    <li> Type <code> .\jsapi.exe </code>
+    <li> If the binary license agreement is acceptable, accept it by
+    clicking "I Agree". The <code>jsapi.jar</code> file will be 
+    unpacked and deposited into the <code>lib</code> directory.
+</ol>
+
+<!-- Since jdk1.4beta3 only works on windows, linux and solaris, there
+ are currently no 'other' systems -->
+
+<!--
+<br><b> Other Systems</b> - If 
+self-extracting shell archives (Win32,
+Mac) Follow these steps to get an implementation of the JSAPI 1.0 specification:
 <ol>
  	<li> Go to <a href="http://research.sun.com/speech/software">
 http://research.sun.com/speech/software</a> 
@@ -334,7 +380,7 @@ http://research.sun.com/speech/software</a>
 	<code> jsutils10.tar.Z or jsutils10.zip</code>) </li>
 	<li> Uncompress/untar the downloaded file </li>
 	<li> Copy the file <code> jsutils/lib/jsapi.jar
-	</code> to <code> freetts/lib/jsapi.jar</code> </li>
+	</code> to <code> FreeTTS/lib/jsapi.jar</code> </li>
 </ol>
 <p>Note that although this JSUtils package contains a large number of
 files, the only thing that FreeTTS actually uses from JSUtils is 
@@ -354,12 +400,13 @@ For the zip file:
     % unzip jsutils10.zip  jsutils-1.0/jsapi/lib/jsapi.jar
 </pre>
 
-Once you have extracted jsapi.jar copy it to the freetts lib
+Once you have extracted jsapi.jar copy it to the <code>FreeTTS/lib</code>
 directory:
 
 <pre>
-    cp jsutils-1.0/jsapi/lib/jsapi.jar freetts/lib/jsapi.jar
+    cp jsutils-1.0/jsapi/lib/jsapi.jar FreeTTS/lib/jsapi.jar
 </pre>
+-->
 
 
 
@@ -716,8 +763,7 @@ support the JSAPI 1.0 specification?</b></a></li>
 
 <p>No. Since FreeTTS is a speech synthesis system, none of the JSAPI
 1.0 Recognition interfaces are supported. In addition, FreeTTS
-supports only a subset of the full JSAPI 1.0 specification.   The
-FreeTTS support for JSAPI 1.0 has the following restrictions:</p>
+supports only a subset of the JSAPI 1.0 javax.speech.synthesis specification.   The FreeTTS support for JSAPI 1.0 has the following restrictions:</p>
 
 <ul>
 <li>JSML Speech Markup is ignored. FreeTTS JSAPI will process JSML, but currently does not apply the markup to the generated speech.</li>
